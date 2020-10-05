@@ -12,7 +12,7 @@ public class Main {
         System.out.println("La moyenne des notes du tableau est : " + moyenne / nomTableau.length);
     }
 
-    static int max(int[] nomTableau){
+    static void max(int[] nomTableau){
         int max = 0;
 
         for (int i = 0; i < nomTableau.length; i++){
@@ -20,18 +20,17 @@ public class Main {
                 max = nomTableau[i];
             }
         }
-        return max;
+        System.out.println("Le plus grand nombre de ce tableau est : " + max);
     }
 
     static boolean inferieur10(int[] nomTableau){
-        boolean inf10 = false;
 
         for (int i = 0; i < nomTableau.length; i++){
             if (nomTableau[i] < 10){
-                inf10 = true;
+                return true;
             }
         }
-        return inf10;
+        return false;
     }
 
     public static void main(String[] args) {
@@ -45,7 +44,7 @@ public class Main {
         scores[6] = 6;
 
         tab(scores);
-        System.out.println("Le plus grand nombre de ce tableau est : " + max(scores));
+        max(scores);
         System.out.println(inferieur10(scores));
     }
 }
