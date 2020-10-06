@@ -12,7 +12,7 @@ public class Main {
             System.out.println(nomTableau[i]);
             moyenne = moyenne + nomTableau[i];
         }
-        return moyenne;
+        return moyenne / nomTableau.length;
     }
 
     /**
@@ -55,7 +55,7 @@ public class Main {
         scores[5] = 4;
         scores[6] = 6;
 
-        System.out.println("La moyenne des notes du tableau est : " + tab(scores) / scores.length);
+        System.out.println("La moyenne des notes du tableau est : " + tab(scores));
         System.out.println("Le plus grand nombre de ce tableau est : " + max(scores));
         System.out.println(inferieur10(scores));
     }
