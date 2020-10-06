@@ -1,9 +1,43 @@
 package com.company;
 
 public class Main {
+
+    /**
+     * Trouver l'index du tableau qui contient le nombre recherché
+     * @param nomTableau un tableau d'entier
+     * @param nbAchercher un nombre entier
+     * @return un nombre entier (index du tableau)
+     */
+    public static int rechercheBinaire(int[] nomTableau, int nbAchercher){
+        int min = 0;    // index minimum du tableau
+        int max = nomTableau.length - 1;    // index maximum du tableau
+        int index = 0;  // index où se trouve le nbAchercher
+
+        while (min <= max){
+            int milieu = (min + max) / 2;   // On divise l'intervalle par 2
+
+            if (nbAchercher < nomTableau[min] || nbAchercher > nomTableau[max]){
+                index = -1;
+                return index;
+            }
+            if (nomTableau[milieu] < nbAchercher){
+                min = milieu + 1;
+            }
+            else if (nomTableau[milieu] > nbAchercher){
+                max = milieu - 1;
+            }
+            else if (nomTableau[milieu] == nbAchercher){
+                index = milieu;
+                break;
+            }
+        }
+        return index;
+    }
+
     /**
      * Calcule la moyenne des notes d'un tableau.
      * @param nomTableau un tableau d'entier
+     * @return un nombre flottant (la moyenne)
      */
     public static float tab(int[] nomTableau){
         float moyenne = 0;
@@ -18,6 +52,7 @@ public class Main {
     /**
      * Affiche le nombre le plus grand présent dans un tableau.
      * @param nomTableau un tableau d'entier
+     * @return un nombre entier (le plus grand)
      */
     public static int max(int[] nomTableau){
         int max = 0;
@@ -47,16 +82,17 @@ public class Main {
 
     public static void main(String[] args) {
         int scores[] = new int[7];
-        scores[0] = 3;
-        scores[1] = 15;
-        scores[2] = 35;
-        scores[3] = 9;
-        scores[4] = 13;
-        scores[5] = 4;
-        scores[6] = 6;
+        scores[0] = 1;
+        scores[1] = 2;
+        scores[2] = 3;
+        scores[3] = 4;
+        scores[4] = 5;
+        scores[5] = 6;
+        scores[6] = 7;
 
         System.out.println("La moyenne des notes du tableau est : " + tab(scores));
         System.out.println("Le plus grand nombre de ce tableau est : " + max(scores));
         System.out.println(inferieur10(scores));
+        System.out.println("Le nombre cherché se trouve à l'index n°" + rechercheBinaire(scores, 7));
     }
 }
