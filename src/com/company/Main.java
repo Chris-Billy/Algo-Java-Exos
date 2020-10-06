@@ -2,21 +2,24 @@ package com.company;
 
 public class Main {
 
-    static void countDownLoop(int start){
-        for (int i = start; i > 0; i--){
-            System.out.print(i + "...");
-        }
-        System.out.println("FINISHED");
-    }
+    static int rechercheBinaireRecursive(int[] nomTableau, int nbAchercher, int min, int max){
+        int index = 0;
 
-    static void countDownRecursive(int start){
-        if (start > 0){
-            System.out.print(start + "...");
-            countDownRecursive(start - 1);
+        if (min <= max){
+            int milieu = (min + max) / 2;   // On divise l'intervalle par 2
+
+            if (nomTableau[milieu] < nbAchercher){
+                return rechercheBinaireRecursive(nomTableau, nbAchercher, milieu + 1, max);
+            }
+            else if (nomTableau[milieu] > nbAchercher){
+                return rechercheBinaireRecursive(nomTableau, nbAchercher, min, milieu - 1);
+            }
+            else if (nomTableau[milieu] == nbAchercher){
+                index = milieu;
+                return index;
+            }
         }
-        else{
-            System.out.println("FINISHED");
-        }
+        return -1;
     }
 
     /**
@@ -33,10 +36,6 @@ public class Main {
         while (min <= max){
             int milieu = (min + max) / 2;   // On divise l'intervalle par 2
 
-            if (nbAchercher < nomTableau[min] || nbAchercher > nomTableau[max]){
-                index = -1;
-                return index;
-            }
             if (nomTableau[milieu] < nbAchercher){
                 min = milieu + 1;
             }
@@ -45,10 +44,28 @@ public class Main {
             }
             else if (nomTableau[milieu] == nbAchercher){
                 index = milieu;
-                break;
+                return index;
             }
         }
-        return index;
+        return -1;
+    }
+
+
+    static void countDownLoop(int start){
+        for (int i = start; i > 0; i--){
+            System.out.print(i + "...");
+        }
+        System.out.println("FINISHED");
+    }
+
+    static void countDownRecursive(int start){
+        if (start > 0){
+            System.out.print(start + "...");
+            countDownRecursive(start - 1);
+        }
+        else{
+            System.out.println("FINISHED");
+        }
     }
 
     /**
@@ -113,5 +130,6 @@ public class Main {
         System.out.println("Le nombre cherché se trouve à l'index n°" + rechercheBinaire(scores, 7));
         countDownLoop(5);
         countDownRecursive(5);
+        System.out.println("Le nombre cherché se trouve à l'index n°" + rechercheBinaireRecursive(scores, 5, 0, scores.length -1));
     }
 }
