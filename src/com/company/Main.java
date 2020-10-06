@@ -1,18 +1,25 @@
 package com.company;
 
 public class Main {
-
-    static void tab(int[] nomTableau){
-        int moyenne = 0;
+    /**
+     * Calcule la moyenne des notes d'un tableau.
+     * @param nomTableau un tableau d'entier
+     */
+    public static float tab(int[] nomTableau){
+        float moyenne = 0;
 
         for (int i = 0; i < nomTableau.length; i++){
             System.out.println(nomTableau[i]);
             moyenne = moyenne + nomTableau[i];
         }
-        System.out.println("La moyenne des notes du tableau est : " + moyenne / nomTableau.length);
+        return moyenne;
     }
 
-    static void max(int[] nomTableau){
+    /**
+     * Affiche le nombre le plus grand présent dans un tableau.
+     * @param nomTableau un tableau d'entier
+     */
+    public static int max(int[] nomTableau){
         int max = 0;
 
         for (int i = 0; i < nomTableau.length; i++){
@@ -20,10 +27,15 @@ public class Main {
                 max = nomTableau[i];
             }
         }
-        System.out.println("Le plus grand nombre de ce tableau est : " + max);
+        return max;
     }
 
-    static boolean inferieur10(int[] nomTableau){
+    /**
+     * Retourne vrai s'il y a un nombre en dessous de 10 dans un tableau.
+     * @param nomTableau un tableau d'entier
+     * @return Vrai si un nombre est < 10, sinon Faux
+     */
+    public static boolean inferieur10(int[] nomTableau){
 
         for (int i = 0; i < nomTableau.length; i++){
             if (nomTableau[i] < 10){
@@ -43,8 +55,8 @@ public class Main {
         scores[5] = 4;
         scores[6] = 6;
 
-        tab(scores);
-        max(scores);
+        System.out.println("La moyenne des notes du tableau est : " + tab(scores) / scores.length);
+        System.out.println("Le plus grand nombre de ce tableau est : " + max(scores));
         System.out.println(inferieur10(scores));
     }
 }
