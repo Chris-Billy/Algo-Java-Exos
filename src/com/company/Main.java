@@ -2,6 +2,23 @@ package com.company;
 
 public class Main {
 
+    static void countDownLoop(int start){
+        for (int i = start; i > 0; i--){
+            System.out.print(i + "...");
+        }
+        System.out.println("FINISHED");
+    }
+
+    static void countDownRecursive(int start){
+        if (start > 0){
+            System.out.print(start + "...");
+            countDownRecursive(start - 1);
+        }
+        else{
+            System.out.println("FINISHED");
+        }
+    }
+
     /**
      * Trouver l'index du tableau qui contient le nombre recherché
      * @param nomTableau un tableau d'entier
@@ -94,5 +111,7 @@ public class Main {
         System.out.println("Le plus grand nombre de ce tableau est : " + max(scores));
         System.out.println(inferieur10(scores));
         System.out.println("Le nombre cherché se trouve à l'index n°" + rechercheBinaire(scores, 7));
+        countDownLoop(5);
+        countDownRecursive(5);
     }
 }
